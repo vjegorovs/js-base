@@ -1,0 +1,1 @@
+{"version":3,"file":"css/main.css","sources":["webpack:///./src/css/style.scss"],"sourcesContent":["body{color:red}.test h1{text-transform:uppercase}"],"mappings":"AAAA;","sourceRoot":""}

@@ -1,6 +1,8 @@
-## Starting point for a project with configured webpack, webpack-dev-server, babel, corejs
+## Starting point for a project with configured webpack, webpack-dev-server, babel, sass, corejs
 
-## Source files in src/, webpack result files appear in assets/scripts/
+- Source files in src/, webpack bundle files appear in assets/
+- for dev build css-in-js is used
+- for prod css is compiled into assets/css/
 
 ### Steps to begin:
 

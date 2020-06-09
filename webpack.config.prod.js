@@ -1,13 +1,14 @@
 const path = require("path");
 const CleanPlugin = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: "production",
-  entry: "./src/app.js",
+  entry: ["./src/app.js", "./src/css/style.scss"],
   output: {
-    filename: "app.js",
-    path: path.resolve(__dirname, "assets", "scripts"),
-    publicPath: "assets/scripts/",
+    filename: "js/app.js",
+    path: path.resolve(__dirname, "assets"),
+    publicPath: "/",
   },
   devtool: "cheap-source-map",
   module: {
@@ -27,7 +28,27 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          // Creates `style` nodes from JS strings
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: { publicPath: "./assets/css" },
+          },
+          // Translates CSS into CommonJS
+          "css-loader",
+          // Compiles Sass to CSS
+          "sass-loader",
+        ],
+      },
     ],
   },
-  plugins: [new CleanPlugin.CleanWebpackPlugin()],
+  plugins: [
+    new CleanPlugin.CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "css/[name].css",
+      chunkFilename: "[id].css",
+    }),
+  ],
 };
